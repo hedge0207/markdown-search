@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "til-search"
+version = "0.1.0"
+description = ""
+authors = ["theo0207 <80657588+theo0207@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pydantic = "^2.10.3"
+pydantic-settings = "^2.6.1"
+elasticsearch = "^8.16.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
