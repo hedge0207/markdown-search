@@ -1,8 +1,8 @@
 import os
-import hashlib
 
 from elasticsearch import Elasticsearch, helpers
 
+from model.document import Document
 from markdown_parser import MarkdownParser
 from config.config import config
 
@@ -15,14 +15,13 @@ class Indexer:
         self._parser = MarkdownParser()
         self._tmp = set()
 
-    def _index(self, path, docs: list[dict]):
+    def _index(self, docs: list[Document]):
         bulk_data = []
         for doc in docs:
-            doc["path"] = path
             bulk_data.append({
-                "_index":"markdown_search",
-                "_id": hashlib.sha256(("".join(doc["title"])+path).encode()).hexdigest(),
-                "_source": doc})
+                "_index": config.index_name,
+                "_id": doc.id,
+                "_source": doc.model_dump_json(exclude=["id"])})
         helpers.bulk(self._es_client, bulk_data)
     
     def index(self, path: str=""):
@@ -32,4 +31,4 @@ class Indexer:
                 self.index(path + "/" +sub_path)
             else:
                 if new_path.endswith(".md") and not new_path.endswith("README.md"):
-                    self._index(f"{path}/{sub_path}", self._parser.parse(new_path))
+                    self._index(self._parser.parse(f"{path}/{sub_path}", new_path))

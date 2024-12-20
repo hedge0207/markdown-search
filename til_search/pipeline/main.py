@@ -10,14 +10,14 @@ class Pipeline:
         self._git = Git(self._clone_path)
         self._indexer = Indexer(self._clone_path)
     
-    def _pull_files(self):
+    def _pull(self):
         try:
             self._git.clone()
         except FileExistsError:
             self._git.pull()
     
     def run(self):
-        # self._pull_files()
+        self._pull()
         self._indexer.index()
 
 
