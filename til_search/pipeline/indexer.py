@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch, helpers
 
 from model.document import Document
 from markdown_parser import MarkdownParser
-from config.config import config
+from til_search.config.config import config
 
 
 class Indexer:

@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 
-from config.config import config
+from til_search.config.config import config
 
 
 class Searcher:
@@ -32,7 +32,7 @@ class Searcher:
     def search(self):
         print("Please enter query:", end=" ")
         term = input()
-        res = self._es_client.search(index="markdown_search", body=self._make_query(term=term))
+        res = self._es_client.search(index=config.index_name, body=self._make_query(term=term))
         for doc in res["hits"]["hits"]:
             print("Path:", doc["_source"]["path"])
             print("Title:", doc["_source"]["title"])

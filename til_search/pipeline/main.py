@@ -1,7 +1,7 @@
 from git import Git
 from indexer import Indexer
 from utils import parse_repo_name_from_url
-from config.config import config
+from til_search.config.config import config
 
 
 class Pipeline:

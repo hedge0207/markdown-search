@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from config.config import config
+from til_search.config.config import config
 
 
 class Git:

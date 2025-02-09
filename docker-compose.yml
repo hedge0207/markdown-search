@@ -14,7 +14,6 @@ services:
       memlock:
         soft: -1
         hard: -1
-    restart: always
     ports:
       - 9205:9200
   

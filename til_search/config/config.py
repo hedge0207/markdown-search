@@ -11,8 +11,8 @@ class Settings(BaseSettings):
 
     index_name: str
     elasticsearch_urls: list[str]
-
-    model_config = SettingsConfigDict(env_file=f"./config/.env", env_file_encoding="utf-8")
+    os.pardir
+    model_config = SettingsConfigDict(env_file=f"{os.pardir}/config/.env", env_file_encoding="utf-8")
 
 
 config = Settings()
